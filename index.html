@@ -96,11 +96,11 @@
                     let decode = "";
                     for (let i = 0; i < len; i++) {
                         const encodeChar = text.substring(i * 7, i * 7 + 7);
-                        let sixUniChar = "";
+                        let charUniSix = "";
                         for (let char of encodeChar) {
-                            sixUniChar += decodeDic[char];
+                            charUniSix += decodeDic[char];
                         }
-                        decode += String.fromCharCode(parseInt(sixUniChar, 6).toString(16));
+                        decode += String.fromCharCode(parseInt(charUniSix, 6).toString(16));
                     }
                     plaintext.value = decode
                     ciphetext.value = ''
