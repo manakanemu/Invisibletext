@@ -28,7 +28,7 @@
                 width: 400pt;
                 font-size: 15pt;
             }
-            input::placeholder{
+            input::placeholder {
                 color: #c5c5d5;
             }
             button {
@@ -55,18 +55,18 @@
                 "\u200F": "5",
             };
             const encodeDic = {
-                "0": "\u200B",
-                "1": "\uFEFF",
-                "2": "\u200D",
-                "3": "\u200C",
-                "4": "\u200E",
-                "5": "\u200F",
+                0: "\u200B",
+                1: "\uFEFF",
+                2: "\u200D",
+                3: "\u200C",
+                4: "\u200E",
+                5: "\u200F",
             };
             function getUnicode(charCode) {
                 return charCode.charCodeAt(0).toString(16);
             }
             function getSixCode(charCode) {
-                return parseInt(charCode.charCodeAt(0),16).toString(6);
+                return parseInt(charCode.charCodeAt(0), 16).toString(6);
             }
             function PrefixInteger(s, len) {
                 return (Array(len).join("0") + s).slice(-len);
@@ -77,7 +77,7 @@
 
                 document.getElementById("encode-btn").onclick = function () {
                     let text = plaintext.value;
-                    plaintext.value = ''
+                    plaintext.value = "";
                     ciphetext.value = "加";
                     for (let char of text) {
                         const charUniSix = PrefixInteger(getSixCode(char), 7);
@@ -87,7 +87,7 @@
                         }
                         ciphetext.value += encodeChar;
                     }
-                    ciphetext.value += '密'
+                    ciphetext.value += "密";
                 };
 
                 document.getElementById("decode-btn").onclick = function () {
@@ -102,19 +102,20 @@
                         }
                         decode += String.fromCharCode(parseInt(charUniSix, 6).toString(16));
                     }
-                    plaintext.value = decode
-                    ciphetext.value = ''
+                    plaintext.value = decode;
+                    ciphetext.value = "";
                 };
 
-                document.getElementById('copy-btn').onclick = function(){
-                    const input = document.createElement('input')
-                    input.value = ciphetext.value
-                    input.style = 'height:0px;width=0px;'
-                    document.body.appendChild(input)
-                    input.select()
-                    document.execCommand('Copy')
-                    document.body.removeChild(input)
-                }
+                document.getElementById("copy-btn").onclick = function () {
+                    const input = document.createElement("input");
+                    input.value = ciphetext.value;
+                    input.style = "height:0px;width=0px;";
+                    document.body.appendChild(input);
+                    input.select();
+                    input.setSelectionRange(0, input.value.length);
+                    document.execCommand("Copy");
+                    document.body.removeChild(input);
+                };
             };
         </script>
     </head>
